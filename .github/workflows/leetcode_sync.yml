@@ -1,0 +1,23 @@
+name: Sync Leetcode
+
+on:
+  workflow_dispatch: # Allows you to trigger the sync manually anytime
+  schedule:
+    - cron: "0 8 * * *" # Runs automatically every day at 8:00 AM UTC
+
+# Restrict the default GITHUB_TOKEN permissions to only write to this repository
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sync Leetcode Solutions
+        # Pinned to exact commit SHA of v1.7.0 for maximum security
+        uses: joshcai/leetcode-sync@0072bbab7fb1179040003b5b6028fa608a2fe785
+        with:
+          github-token: ${{ github.token }}
+          leetcode-csrf-token: ${{ secrets.LEETCODE_CSRF_TOKEN }}
+          leetcode-session: ${{ secrets.LEETCODE_SESSION }}
+          destination-folder: solutions
