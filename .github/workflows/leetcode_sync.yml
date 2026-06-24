@@ -15,7 +15,7 @@ jobs:
     steps:
       - name: Sync Leetcode Solutions
         # Pinned to exact commit SHA of v1.7.0 for maximum security
-        uses: joshcai/leetcode-sync@0072bbab7fb1179040003b5b6028fa608a2fe785
+        uses: joshcai/leetcode-sync@v1.7
         with:
           github-token: ${{ github.token }}
           leetcode-csrf-token: ${{ secrets.LEETCODE_CSRF_TOKEN }}
